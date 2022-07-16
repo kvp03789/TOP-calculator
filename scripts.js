@@ -1,5 +1,5 @@
 const display = document.querySelector("#displayContainer");
-let buttons = document.querySelectorAll(".button");
+let buttons = document.querySelectorAll(".opButton");
 Array
     .from(buttons)
     .forEach(addEvent)    
@@ -38,6 +38,14 @@ const calc = {
         num2 = this.numArray[1];
         return divide(num1, num2);
     },  
+    clearOne: function() { 
+        this.numArray.pop();
+        display.innerHTML = this.numArray;
+    },
+    clearEverything: function() {
+        this.numArray.length = 0; 
+        display.innerHTML = this.numArray; 
+    }
 };
 
 //MAIN EVENT
@@ -49,9 +57,17 @@ function addEvent(element) {
         console.log(calc.numArray);
 })};
 
-//ERASE EVENT
-const clearButton = document.querySelector("#clearButton");
+//ERASE EVERYTHING EVENT
+const clearEverythingButton = document.querySelector("#clearEverythingButton");
+clearEverythingButton.addEventListener("click", () => {
+    calc.clearEverything();   
+});
 
+// ERASE ONLY LAST CHAR EVENT
+const clearOneButton = document.querySelector("#clearOneButton");
+clearOneButton.addEventListener("click", () => {
+    calc.clearOne();   
+});
 
 
 
