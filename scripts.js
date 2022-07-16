@@ -1,61 +1,103 @@
 const display = document.querySelector("#displayContainer");
-let buttons = document.querySelectorAll(".opButton");
+const displayOne = document.querySelector("#displayContainerOne");
+const displayString = document.querySelector("#displayContainerString");
+
+let allButtons = document.querySelectorAll(".button");
 Array
-    .from(buttons)
-    .forEach(addEvent)    
+    .from(allButtons)
+    .forEach(recordToString) 
+
+let numButtons = document.querySelectorAll(".numButton");
+Array
+    .from(numButtons)
+    .forEach(addEvent)  
+    
+let symbolButtons = document.querySelectorAll(".symbolButton");
+Array
+    .from(symbolButtons)
+    .forEach(addSymbolEvent)
 
 const calc = {
-    numArray : [],
-    // add: function(num1, num2) {
-    //     return num1 + num2;
-    // },
-    // subtract: function(num1, num2) {
-    //     return num1 - num2;
-    // },
-    // multiply: function(num1, num2) {
-    //     return num1 * num2;
-    // },
-    // divide: function(num1, num2) {
-    //     return num1 / num2;
-    // }, 
+
+    displayArray : [],
+    symbolsArray: [],
+    currentNumber: [],
+    joined: '',
+    displayString: '',
     operateAdd: function(num1, num2) {
-        num1 = this.numArray[0];
-        num2 = this.numArray[1];
+        num1 = this.displayArray[0];
+        num2 = this.displayArray[1];
         return add(num1, num2);
     },
     operateSubtract: function(num1, num2) {
-        num1 = this.numArray[0];
-        num2 = this.numArray[1];
+        num1 = this.displayArray[0];
+        num2 = this.displayArray[1];
         return subtract(num1, num2);
     }, 
     operateMultiply: function(num1, num2) {
-        num1 = this.numArray[0];
-        num2 = this.numArray[1];
+        num1 = this.displayArray[0];
+        num2 = this.displayArray[1];
         return multiply(num1, num2);
     }, 
     operateDivide: function(num1, num2) {
-        num1 = this.numArray[0];
-        num2 = this.numArray[1];
+        num1 = this.displayArray[0];
+        num2 = this.displayArray[1];
         return divide(num1, num2);
     },  
     clearOne: function() { 
-        this.numArray.pop();
-        display.innerHTML = this.numArray;
+        this.displayArray.pop();
+        display.innerHTML = this.displayArray;
     },
     clearEverything: function() {
-        this.numArray.length = 0; 
-        display.innerHTML = this.numArray; 
-    }
+        this.displayArray.length = 0; 
+        this.currentNumber.length = 0;
+        this.joined = '';
+        this.displayString = '';
+        display.innerHTML = '----';
+        displayOne.innerHTML = '----';
+        displayString.innerHTML = '----';
+    },
+    getAnswer: function () {
+        
+    },
 };
 
-//MAIN EVENT
+//ADD EVENT TO NUM BUTTONS
 function addEvent(element) {
     element.addEventListener("click", (e) => {
-        calc.numArray.push(e.target.value);
-        // calc.num1 = e.target.value;
-        display.innerHTML = calc.numArray;
-        console.log(calc.numArray);
+
+        let value = e.target.value;
+        calc.currentNumber.push(value);
+        calc.joined = calc.currentNumber.join('');
+        displayOne.innerHTML = calc.joined;
+        
 })};
+
+//ADD EVENT TO SYMBOL BUTTONS
+function addSymbolEvent(element) {
+    element.addEventListener("click", (e) => {
+        calc.displayArray.push(calc.joined);
+        calc.currentNumber.length = 0;
+        calc.joined = '';
+        calc.displayArray.push(e.target.value);
+        display.innerHTML = calc.displayArray;
+        displayOne.innerHTML = '----';
+    })
+}
+
+//ADD DISPLAY STRING EVENT TO EVERY BUTTON, WITH SPACE IF SYMBOL BTN
+function recordToString(element) {
+    element.addEventListener("click", (e) => {
+        if (e.target.value === '+' || e.target.value === '-' || e.target.value === '*' || e.target.value === '/' ) {
+            calc.displayString = calc.displayString.concat(' ' + e.target.value.toString() + ' ');
+            displayString.innerHTML = calc.displayString;
+        }
+        else {
+        calc.displayString = calc.displayString.concat(e.target.value.toString());
+        displayString.innerHTML = calc.displayString;
+        }
+    })
+}
 
 //ERASE EVERYTHING EVENT
 const clearEverythingButton = document.querySelector("#clearEverythingButton");
@@ -69,6 +111,11 @@ clearOneButton.addEventListener("click", () => {
     calc.clearOne();   
 });
 
+//EQUAL BUTTON EVENT
+const equalButton = document.querySelector("#eqButton");
+equalButton.addEventListener("click", () => {
+    calc.getAnswer();
+});
 
 
 
@@ -85,23 +132,4 @@ function multiply(x, y) {
 function divide(x, y) {
     return x / y;
 }
-// function operate(x, op, y) {
-//     switch (op) {
-//         case '+':
-//             console.log(add(x, y));
-//             break;
-//         case '-':
-//             console.log(subtract(x, y));
-//             break;
-//         case '*':
-//             console.log(multiply(x, y));
-//             break;
-//         case '/':
-//             console.log(divide(x, y));
-//             break;
-//     }
-// }
 
-// let opInput = "*";
-
-// operate(num1, opInput, num2);
