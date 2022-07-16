@@ -4,11 +4,8 @@ Array
     .from(buttons)
     .forEach(addEvent)    
 
-
-
 const calc = {
-    num1 : 0,
-    num2 : 0,
+    numArray : [],
     // add: function(num1, num2) {
     //     return num1 + num2;
     // },
@@ -22,26 +19,38 @@ const calc = {
     //     return num1 / num2;
     // }, 
     operateAdd: function(num1, num2) {
+        num1 = this.numArray[0];
+        num2 = this.numArray[1];
         return add(num1, num2);
     },
-    operateSubtract: function() {
+    operateSubtract: function(num1, num2) {
+        num1 = this.numArray[0];
+        num2 = this.numArray[1];
         return subtract(num1, num2);
     }, 
-    operateMultiply: function() {
+    operateMultiply: function(num1, num2) {
+        num1 = this.numArray[0];
+        num2 = this.numArray[1];
         return multiply(num1, num2);
     }, 
-    operateDivide: function() {
+    operateDivide: function(num1, num2) {
+        num1 = this.numArray[0];
+        num2 = this.numArray[1];
         return divide(num1, num2);
     },  
 };
 
-
+//MAIN EVENT
 function addEvent(element) {
     element.addEventListener("click", (e) => {
-        let displayText = e.target.value;
-        calc.num1 = e.target.value;
-        display.innerHTML = displayText;
+        calc.numArray.push(e.target.value);
+        // calc.num1 = e.target.value;
+        display.innerHTML = calc.numArray;
+        console.log(calc.numArray);
 })};
+
+//ERASE EVENT
+const clearButton = document.querySelector("#clearButton");
 
 
 
