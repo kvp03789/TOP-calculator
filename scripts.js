@@ -47,6 +47,8 @@ const calc = {
     clearOne: function() { 
         this.displayArray.pop();
         display.innerHTML = this.displayArray;
+        displayOne.innerHTML = '----';
+//MUST FIX, DELETE LAST FULL INT - this.displayString = this.displayString.replace(this.joined, this.displayString - this.joined);
     },
     clearEverything: function() {
         this.displayArray.length = 0; 
