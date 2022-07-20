@@ -1,13 +1,21 @@
 body {
     background-color: black;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    align-items:center;
+    margin-top: 100px;
+    gap: 50px;
 }
 
 #container {
     width: 400px;
     height: 700px;
-    background-color: rgb(255, 255, 255);
+    background-color: white;
     border: 3px solid white;
+    border-radius: 2%;
     display: grid;
+    gap: .2em;
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas: auto;
 }
@@ -35,6 +43,11 @@ button, #displayContainerString {
     font-family:'Electrolize', sans-serif;
 }
 
+#displayContainerString {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
 .grid-col-span-2 {
     grid-column: span 2;
 }
@@ -44,14 +57,15 @@ button, #displayContainerString {
     font-size: 3.5em; 
     justify-self: center;
     align-self: center;
-    /* background-color: silver;
-    color: white;*/
+    border-radius: 2%;
+    /* background-color: white; */
+    /* color: white;*/ 
 } 
-
 /* #displayContainer {
     background-color: white;
-    size: 3em;
-} */
+    border-radius: 2%;
+    margin-right: 10px;
+}  */
 
 #symbolButton {
     background-color: rgb(155, 178, 203);
@@ -59,4 +73,14 @@ button, #displayContainerString {
 
 #eqButton {
     background-color: rgba(165, 42, 42, 0.27);
+}
+
+#footer {
+    align-self: center;
+    color: white;
+    background-color: black;
+    font-size: 1.5em;
+    font-family:'Electrolize', sans-serif;
+    margin-bottom: 20px;
+    font-kerning: 5px;
 }
