@@ -1,0 +1,62 @@
+body {
+    background-color: black;
+}
+
+#container {
+    width: 400px;
+    height: 700px;
+    background-color: rgb(255, 255, 255);
+    border: 3px solid white;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: auto;
+}
+
+#clearEverythingButton, #clearOneButton, #eqButton {
+    background-color: rgb(200, 200, 208);
+}
+
+#clearEverythingButton:hover, #clearOneButton:hover, #eqButton:hover {
+    background-color: rgb(255, 255, 255);
+    border: inset 2px white;
+}
+
+.numButton {
+    background-color: rgb(207, 225, 242);
+}
+.cButton:hover {
+    background-color: rgb(176, 212, 230);
+    font-size: 1.6em;
+    border: outset 2px white;
+}
+
+button, #displayContainerString {
+    font-size: 2em;
+    font-family:'Electrolize', sans-serif;
+}
+
+.grid-col-span-2 {
+    grid-column: span 2;
+}
+
+#displayContainerOne {
+    font-family:'Electrolize', sans-serif;
+    font-size: 3.5em; 
+    justify-self: center;
+    align-self: center;
+    /* background-color: silver;
+    color: white;*/
+} 
+
+/* #displayContainer {
+    background-color: white;
+    size: 3em;
+} */
+
+#symbolButton {
+    background-color: rgb(155, 178, 203);
+}
+
+#eqButton {
+    background-color: rgba(165, 42, 42, 0.27);
+}

@@ -32,24 +32,28 @@ const calc = {
         num1 = parseInt(this.displayArray[0]);
         num2 = parseInt(this.displayArray[2]);
         this.answer = (num1 + num2);
+        
         console.log(this.answer);
     },
     operateSubtract: function(num1, num2) {
         num1 = parseInt(this.displayArray[0]);
         num2 = parseInt(this.displayArray[2]);
         this.answer = (num1 - num2);
+        
         console.log(this.answer);
     }, 
     operateMultiply: function(num1, num2) {
         num1 = parseInt(this.displayArray[0]);
         num2 = parseInt(this.displayArray[2]);
         this.answer = (num1 * num2);
+        
         console.log(this.answer);
     }, 
     operateDivide: function(num1, num2) {
         num1 = parseInt(this.displayArray[0]);
         num2 = parseInt(this.displayArray[2]);
         this.answer = (num1 / num2);
+        
         console.log(this.answer);
     },  
     clearOne: function() { 
@@ -92,7 +96,7 @@ const calc = {
 //ADD EVENT TO NUM BUTTONS
 function addEvent(element) {
     element.addEventListener("click", (e) => {
-
+   
         let value = e.target.value;
         calc.currentNumber.push(value);
         calc.joined = calc.currentNumber.join(''); 
@@ -103,9 +107,9 @@ function addEvent(element) {
 //ADD EVENT TO SYMBOL BUTTONS
 function addSymbolEvent(element) {
     element.addEventListener("click", (e) => {
-        if (calc.displayArray.slice(-1) == '/' || calc.displayArray.slice(-1) == '*' || 
-        calc.displayArray.slice(-1) == '-' || calc.displayArray.slice(-1) == '+') {}
-        else {
+        // if (calc.displayArray.slice(-1) == '/' || calc.displayArray.slice(-1) == '*' || 
+        // calc.displayArray.slice(-1) == '-' || calc.displayArray.slice(-1) == '+') {}
+        // else {
         if (calc.displayArray.length === 1) {
             calc.currentNumber.length = 0;
             calc.joined = '';
@@ -124,15 +128,15 @@ function addSymbolEvent(element) {
         display.innerHTML = calc.displayArray;
         displayOne.innerHTML = '----';
         }
-    }})
+    })
 }
 
 //ADD DISPLAY STRING EVENT TO EVERY BUTTON, WITH SPACE IF SYMBOL BTN
 function recordToString(element) {
     element.addEventListener("click", (e) => {
-        if (calc.displayArray.slice(-1) == '/' || calc.displayArray.slice(-1) == '*' || 
-        calc.displayArray.slice(-1) == '-' || calc.displayArray.slice(-1) == '+') {}
-        else {
+        // if (calc.displayArray.slice(-1) == '/' || calc.displayArray.slice(-1) == '*' || 
+        // calc.displayArray.slice(-1) == '-' || calc.displayArray.slice(-1) == '+') {}
+        // else {
         if (e.target.value === '+' || e.target.value === '-' || e.target.value === '*' || e.target.value === '/' || e.target.value === '=' ) {
             calc.displayString = calc.displayString.concat(' ' + e.target.value.toString() + ' ');
             displayString.innerHTML = calc.displayString;
@@ -141,7 +145,7 @@ function recordToString(element) {
         calc.displayString = calc.displayString.concat(e.target.value.toString());
         displayString.innerHTML = calc.displayString;
         }
-    }})
+    })
 }
 
 //ERASE EVERYTHING EVENT
@@ -166,23 +170,10 @@ equalButton.addEventListener("click", () => {
     calc.currentNumber.length = 0;
     calc.joined = '';    
     display.innerHTML = '----';
-    displayOne.innerHTML = '----';
+    displayOne.innerHTML = `${calc.answer}`;
         
 });
 
 
 
-// //BASIC FUNCTIONS
-// function add(x, y) {
-//     return x + y;
-// }
-// function subtract(x, y) {
-//     return x - y;
-// }
-// function multiply(x, y) {
-//     return x * y;
-// }
-// function divide(x, y) {
-//     return x / y;
-// }
 
